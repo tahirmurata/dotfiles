@@ -20,7 +20,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           {
-            # 
+            # Set Git commit hash for darwin-version.
             system.configurationRevision = self.rev or self.dirtyRev or null;
 
             # Auto upgrade nix package and the daemon service
@@ -35,13 +35,6 @@
             # The platform the configuration will be used on
             nixpkgs.hostPlatform = "aarch64-darwin";
           }
-          # home-manager.darwinModules.home-manager
-          # {
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.useUserPackages = true;
-          #   home-manager.extraSpecialArgs = inputs;
-          #   home-manager.users.torgeir = import ./home.nix;
-          # }
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
