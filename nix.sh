@@ -1,3 +1,3 @@
 #!/bin/bash
 
-darwin-rebuild switch --flake ./nix-darwin
+darwin-rebuild switch --flake ./nix-darwin#pastc-darwin
