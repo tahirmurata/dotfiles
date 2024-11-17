@@ -15,7 +15,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
     {
-      darwinConfigurations."AcacianoMacBook-Air" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."pastc-darwin" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
@@ -53,6 +53,6 @@
         ];
       };
 
-      darwinPackages = self.darwinConfigurations."AcacianoMacBook-Air".pkgs;
+      darwinPackages = self.darwinConfigurations."pastc-darwin".pkgs;
     };
 }
