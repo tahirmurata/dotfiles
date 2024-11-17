@@ -1,0 +1,3 @@
+[submodule "config/nix-darwin"]
+	path = config/nix-darwin
+	url = https://github.com/pastc/nix-darwin
