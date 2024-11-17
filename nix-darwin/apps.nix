@@ -9,6 +9,7 @@
 
     # Programming languages
     nil
+    nixpkgs-fmt
     go
 
     # Programming cli
@@ -19,6 +20,7 @@
     fastfetch
     bat
   ];
+
   environment.variables.EDITOR = "nvim";
 
   homebrew = {
