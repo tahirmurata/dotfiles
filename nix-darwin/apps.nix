@@ -19,6 +19,7 @@
     btop
     fastfetch
     bat
+    lazygit
   ];
 
   environment.variables.EDITOR = "nvim";
