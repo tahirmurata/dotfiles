@@ -15,6 +15,7 @@
 
     # Programming cli
     pnpm
+    wgo
 
     # CLI tools
     btop
