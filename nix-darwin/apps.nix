@@ -36,6 +36,7 @@
       "discord"
       "iina"
       "alt-tab"
+      "tailscale"
     ];
   };
 }
