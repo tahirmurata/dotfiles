@@ -14,55 +14,52 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
-  {
-    darwinConfigurations."AcacianoMacBook-Air" = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = { inherit inputs; };
-      modules = [
-        {
-          # 
-          system.configurationRevision = self.rev or self.dirtyRev or null;
+    {
+      darwinConfigurations."AcacianoMacBook-Air" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
+        modules = [
+          {
+            # 
+            system.configurationRevision = self.rev or self.dirtyRev or null;
 
-          # Auto upgrade nix package and the daemon service
-          services.nix-daemon.enable = true;
+            # Auto upgrade nix package and the daemon service
+            services.nix-daemon.enable = true;
 
-          # Necessary for using flakes on this system
-          nix.settings.experimental-features = [ "nix-command" "flakes" ];
+            # Necessary for using flakes on this system
+            nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-          # Used for backwards compatibility
-          system.stateVersion = 5;
+            # Used for backwards compatibility
+            system.stateVersion = 5;
 
-          # The platform the configuration will be used on
-          nixpkgs.hostPlatform = "aarch64-darwin";
-        }
-        # home-manager.darwinModules.home-manager
-        # {
-        #   home-manager.useGlobalPkgs = true;
-        #   home-manager.useUserPackages = true;
-        #   home-manager.extraSpecialArgs = inputs;
-        #   home-manager.users.torgeir = import ./home.nix;
-        # }
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            # Install Homebrew under the default prefix
-            enable = true;
+            # The platform the configuration will be used on
+            nixpkgs.hostPlatform = "aarch64-darwin";
+          }
+          # home-manager.darwinModules.home-manager
+          # {
+          #   home-manager.useGlobalPkgs = true;
+          #   home-manager.useUserPackages = true;
+          #   home-manager.extraSpecialArgs = inputs;
+          #   home-manager.users.torgeir = import ./home.nix;
+          # }
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              # Install Homebrew under the default prefix
+              enable = true;
 
-            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-            enableRosetta = true;
+              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+              enableRosetta = true;
 
-            # User owning the Homebrew prefix
-            user = "acacia"; 
+              # User owning the Homebrew prefix
+              user = "acacia";
+            };
+          }
+          ./system.nix
+          ./apps.nix
+        ];
+      };
 
-            # Automatically migrate existing Homebrew installations
-            autoMigrate = true;
-          };
-        }
-        ./system.nix
-        ./apps.nix
-      ];
+      darwinPackages = self.darwinConfigurations."AcacianoMacBook-Air".pkgs;
     };
-
-    darwinPackages = self.darwinConfigurations."AcacianoMacBook-Air".pkgs;
-  };
 }
