@@ -11,6 +11,7 @@
     nil
     nixpkgs-fmt
     go
+    templ
 
     # Programming cli
     pnpm
@@ -20,6 +21,7 @@
     fastfetch
     bat
     lazygit
+    ripgrep
   ];
 
   environment.variables.EDITOR = "nvim";
