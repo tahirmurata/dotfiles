@@ -25,7 +25,14 @@ mkdir -p "$HOME/.config"
 for item in "$HOME/.dotfiles/config"/*; do
     name=$(basename "$item")
 
-    if [ -f "$item" ]; then
+    if [ "$name" = "zed" ]; then
+        # Symlink only settings.json in zed
+        source_file="$HOME/.dotfiles/config/zed/settings.json"
+        target_file="$HOME/.config/zed/settings.json"
+
+        [ -e "$target_file" ] && rm -f "$target_file"
+        ln -sf "$source_file" "$target_file"
+    elif [ -f "$item" ]; then
         # Link files to home directory
         link_home "$name"
     elif [ -d "$item" ]; then
