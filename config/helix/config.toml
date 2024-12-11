@@ -3,11 +3,12 @@ theme = "catppuccin_mocha"
 [editor]
 line-number = "relative"
 mouse = false
+completion-replace = true
 
 [editor.cursor-shape]
 normal = "block"
 insert = "bar"
-select = "block"
+select = "underline"
 
 [editor.indent-guides]
 render = true
@@ -18,3 +19,10 @@ enable = true
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "warning"
+
+[keys.normal]
+"ret" = "goto_word"
