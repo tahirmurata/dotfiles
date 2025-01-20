@@ -28,10 +28,10 @@
     ```sh
     nix run nix-darwin -- switch --flake ~/.config/nix-darwin
     ```
-5. Run the `rebuild.sh` script:
+5. Setup git with gh:
 
     ```sh
-    ~/.dotfiles/rebuild.sh
+    gh auth login && gh auth setup-git
     ```
 
 ## License
