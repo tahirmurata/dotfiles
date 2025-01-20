@@ -3,7 +3,7 @@
     <h2 align="center">Dotfiles</h2>
 </p>
 
-<p align="center">Configuration files for macOS</p>
+<p align="center">Configuration for MacBook Air</p>
 
 ## Usage
 1. Install Nix (Lix)
