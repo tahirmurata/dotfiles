@@ -23,7 +23,7 @@
     ```
 4. Install `nix-darwin`:
 
-    Instead of using darwin-installer, you can just run darwin-rebuild switch to install nix-darwin. As darwin-rebuild won't be installed in your PATH yet, you can use the following command:
+    Since darwin-rebuild isn't installed yet, the command uses nix to run darwin-rebuild directly from the nixpkgs repository.
 
     ```sh
     nix run nix-darwin -- switch --flake ~/.config/nix-darwin
