@@ -14,7 +14,7 @@
 2. Clone the repository into `~/.dotfiles`:
 
     ```sh
-    git clone --recurse-submodules git@github.com:pastc/dotfiles.git ~/.dotfiles
+    git clone --recurse-submodules https://github.com/tahirmurata/dotfiles.git ~/.dotfiles
     ```
 3. Run the `link.sh` script:
 
