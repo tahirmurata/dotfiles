@@ -6,29 +6,34 @@
 <p align="center">Configuration for MacBook Air</p>
 
 ## Usage
-1. Install Nix (Lix)
+1. Install Command Line Tools
+
+    ```sh
+    xcode-select --install
+    ```
+2. Install Lix
 
     ```sh
     curl -sSf -L https://install.lix.systems/lix | sh -s -- install
     ```
-2. Clone the repository into `~/.dotfiles`:
+3. Clone the repository into `~/.dotfiles`:
 
     ```sh
     git clone --recurse-submodules https://github.com/tahirmurata/dotfiles.git ~/.dotfiles
     ```
-3. Run the `link.sh` script:
+4. Run the `link.sh` script:
 
     ```sh
     ~/.dotfiles/link.sh
     ```
-4. Install `nix-darwin`:
+5. Install `nix-darwin`:
 
     Since darwin-rebuild isn't installed yet, the command uses nix to run darwin-rebuild directly from the nixpkgs repository.
 
     ```sh
     nix run nix-darwin -- switch --flake ~/.config/nix-darwin
     ```
-5. Setup git with gh:
+6. Setup git with gh:
 
     ```sh
     gh auth login && gh auth setup-git
