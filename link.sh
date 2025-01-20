@@ -1,35 +1,25 @@
 #!/bin/bash
 
-# Function for config directory links
-link_config() {
-    local source="$HOME/.dotfiles/config/$1"
-    local target="$HOME/.config/$1"
+CONFIG_DIR="$HOME/.dotfiles/config"
 
-    [ -e "$target" ] && rm -rf "$target"
-    ln -sf "$source" "$target"
-}
-
-# Function for home directory links
-link_home() {
-    local source="$HOME/.dotfiles/config/$1"
-    local target="$HOME/$1"
-
-    [ -e "$target" ] && rm -rf "$target"
-    ln -sf "$source" "$target"
-}
-
-# Ensure .config directory exists
+# Make sure ~/.config exists
 mkdir -p "$HOME/.config"
 
-# Loop through all items in config directory
-for item in "$HOME/.dotfiles/config"/*; do
-    name=$(basename "$item")
+# Loop through hidden and non-hidden items in $CONFIG_DIR
+for item in "$CONFIG_DIR"/.* "$CONFIG_DIR"/*; do
+    case "$(basename "$item")" in
+        '.'|'..') continue ;;
+    esac
 
-    if [ -f "$item" ]; then
-        # Link files to home directory
-        link_home "$name"
-    elif [ -d "$item" ]; then
-        # Link directories to .config
-        link_config "$name"
+    name="$(basename "$item")"
+
+    # Directories go in ~/.config
+    if [ -d "$item" ]; then
+        [ -e "$HOME/.config/$name" ] && rm -rf "$HOME/.config/$name"
+        ln -sf "$item" "$HOME/.config/$name"
+    else
+        # Everything else goes in ~
+        [ -e "$HOME/$name" ] && rm -rf "$HOME/$name"
+        ln -sf "$item" "$HOME/$name"
     fi
 done
